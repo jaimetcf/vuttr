@@ -53,12 +53,10 @@ This will be enough to start the react.js development server, and open a new tab
 web browser where the app user interface will appear. 
 This may take some time also.
 
-6. Have fun!
+6. And, that's all. Have fun!
 
 7. You can reach me thru: jaimetcf@gmail.com
 
 
 
-
-### Citations:
 
