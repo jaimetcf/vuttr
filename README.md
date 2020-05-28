@@ -17,7 +17,7 @@ The App is deployed on firebase (frontend) and Heroku (backend), and hence you d
 
 Nevertheless, if you want to download the code, run it on your machine, or use it as a starting point for another app, just:
 
-1. Clone the full /jaimetcf/vuttr.git repo
+1. Clone the full https://github.com/jaimetcf/vuttr.git repo
 2. In the backend folder, type:
 ```
    npm install
