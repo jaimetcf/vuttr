@@ -2,7 +2,7 @@
 Small App - Code Challenge
 
 ### Short description
-This is a small app specified as a code challange for BossaBox contracting process.
+This is a small app specified as a code challenge for [BossaBox](https://bossabox.com) contracting process.
 It allows allows the user to create and update a list of tools.
 
 ### Technical stack
