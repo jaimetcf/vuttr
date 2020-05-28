@@ -13,7 +13,7 @@ The app uses the MERN stack:
 The database is hosted on a cloud cluster in the [Atlas Cloud Database](https://www.mongodb.com/cloud/atlas).
 
 ### How to install the app
-The App is deployed on firebase (frontend) and Heroku (backend), and hence you don't need to install at all. Just type https://vuttr-b86f1.web.app/user on your browser and you're ready to go.
+The App is deployed on firebase (frontend) and Heroku (backend), and hence you don't need to install it at all. Just type https://vuttr-b86f1.web.app/user on your browser and you're ready to go.
 
 Nevertheless, if you want to download the code, run it on your machine, or use it as a starting point for another app, just:
 
