@@ -18,13 +18,13 @@ The App is deployed on firebase (frontend) and Heroku (backend), and hence you d
 Nevertheless, if you want to download the code, run it on your machine, or use it as a starting point for another app, just:
 
 1. Clone the full https://github.com/jaimetcf/vuttr.git repo
-2. In the backend folder, type:
+2. After cloning, go to the 'backend' folder and type:
 ```
    npm install
 ```
 This will install all the dependencies needed for running the backend.
 
-3. Also, in the frontend folder, type:
+3. Also, in the 'frontend' folder, type:
 ```
    npm install
 ```
@@ -32,7 +32,7 @@ This will install all the dependencies needed for running the frontend.
 
 
 ### How to run the app
-4. In the backend folder, type:
+4. In the 'backend' folder, type:
 ```
    npm start
 ```
@@ -45,7 +45,7 @@ that means the webserver is ready to receive and process the http API calls
 comming from the frontend.
 
 
-5. In the frontend folder, type:
+5. In the 'frontend' folder, type:
 ```
    npm start
 ```
