@@ -24,7 +24,7 @@ Nevertheless, if you want to download the code, run it on your machine, or use i
 ```
 This will install all the dependencies needed for running the backend.
 
-3. Also, in the 'frontend' folder, type:
+3. Then, in the 'frontend' folder, type:
 ```
    npm install
 ```
