@@ -3,7 +3,7 @@ Small App - Code Challenge
 
 ### Short description
 This is a small app specified as a code challenge for [BossaBox](https://bossabox.com) contracting process.
-It allows allows the user to create and update a list of tools.
+It allows the user to create and update a list of tools, and persists this list in a NoSQL (MongoDB) database.
 
 ### Technical stack
 The app uses the MERN stack:
