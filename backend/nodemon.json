@@ -1,0 +1,9 @@
+{
+    "env": {
+        "DB_USER": "jmres",
+        "DB_PASSWORD": "BdpmykRFZHi1ncqq",
+        "DB_NAME": "vuttr",
+        "VUTTR_AUTH_KEY": "VUTTR_AUTH_KEY",
+        "PORT": 4000
+    }    
+}

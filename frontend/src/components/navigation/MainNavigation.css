@@ -1,0 +1,67 @@
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0cm;
+  width: 100%;
+  height: 1.5cm;
+  background-color: #FFFFFF;
+/*  background-color:  rgb(238, 228, 255);*/
+  opacity: 1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
+  z-index: 5;
+}
+
+main {
+  margin-top: 1.5cm;
+  margin-left: 0cm;
+}
+
+.top-nav-title {
+  position: absolute;
+  top: 0.2cm;
+  left: 2cm;
+
+  text-decoration: bold;
+/*  font: 32px Source Sans Pro; */
+  font: 32px Arial;
+  letter-spacing: 0.52px;
+  color: #170C3A;
+  opacity: 1;
+}  
+
+.top-nav-user-name {
+  position: absolute;
+  top: 0.3cm;
+  right: 2cm;
+  color: #170C3A;
+}
+
+.top-nav-links {
+  position: absolute;
+  top: 0.15cm;
+  right: 0.2cm;
+}
+
+.left-nav {
+  position: fixed;
+  top: 0;
+  left: 0.1px;
+  width: 1.2cm;
+  height: 100%;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  opacity: 1;
+  border-color: rgb(205, 204, 206);
+  border-style: solid;
+  border-width: 1px;
+}
+
+.logo-bossa {
+  position: absolute;
+  top: 0.2cm;
+  left: 0.2cm;
+  width: 0.9cm;
+  height: 1cm;
+  background: #ffffff url('LogoBossa.svg') no-repeat padding-box;
+  border: none;
+  cursor: pointer;
+}

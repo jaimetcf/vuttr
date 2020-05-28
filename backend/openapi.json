@@ -1,0 +1,638 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "vuttr-backend",
+    "description": "node/express.js backend for vuttr app, BossaBox backend challenge",
+    "version": "1.0.1",
+    "contact": {
+      "name": "Jaime Santo",
+      "email": "jaimetcf@gmail.com"
+    }
+  },
+  "servers": {
+    "url": "{domainName}",
+    "description": "Production server",
+    "variables": {
+      "domainName": {
+        "default": "https://apivuttr.herokuapp.com",
+        "description": "value assigned during backend server configuration"
+      }
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Just sends back a message to confirm the backend is online",
+        "operationId": "onlineChecpoint",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "apivuttr online "
+                }
+              } 
+            }
+          }
+        }
+      }
+    },  
+    "/users/signup": {
+      "post": {
+        "summary": "Creates a new User document in the database, with parameters received in the message body",
+        "operationId": "signup",
+        "requestBody": {
+          "description": "parameters to create a User document in the database",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/user"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "userId": {
+                      "description": "user id",
+                      "type:": "string"
+                    },
+                    "name": {
+                      "description": "user name",
+                      "type:": "string"
+                    },
+                    "token": {
+                      "description": "auth token for future api requests",
+                      "type:": "string"
+                    }
+                  }                  
+                }  
+              } 
+            }
+          },
+          "470": {
+            "description": "Invalid Parameters",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Invalid parameters. Please check the data you informed."
+                } 
+              }
+            }
+          },
+          "471": {
+            "description": "Exists in DB",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Email already exists, please login instead."
+                } 
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Database access error. Please try again."
+                }
+              } 
+            }
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "Logs the user in, whose parameters are received in the message body",
+        "operationId": "login",
+        "requestBody": {
+          "description": "parameters to find the user in the database",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "description": "user email",
+                    "type:": "string"
+                  },
+                  "password": {
+                    "description": "user password",
+                    "type:": "string"
+                  }
+                },
+                "required": [ "email", "password" ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "userId": {
+                      "description": "user id",
+                      "type:": "string"
+                    },
+                    "name": {
+                      "description": "user name",
+                      "type:": "string"
+                    },
+                    "token": {
+                      "description": "auth token for future api requests",
+                      "type:": "string"
+                    }
+                  }
+                }  
+              } 
+            }
+          },
+          "470": {
+            "description": "Invalid Parameters",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Invalid parameters. Please check the data you informed."
+                } 
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Could not log you in. Invalid credentials."
+                } 
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Login in failed, please try again."
+                }
+              } 
+            }
+          }
+        }
+      }
+    },
+    "/tools": {
+      "post": {
+        "summary": "Creates a new Tool instance in the database, with parameters received in the message body",
+        "operationId": "addUserTool",
+        "parameters": [
+          {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT",
+            "in": "header",
+            "description": "token for authentication/authorization, passed in the header",
+            "required": true,
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Authorization": {
+                      "type": "string"
+                    }
+                  }
+                }
+              } 
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "parameters to create a Tool document in the database",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tool"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tool"
+                }  
+              } 
+            }
+          },
+          "470": {
+            "description": "Invalid Parameters",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Invalid parameters. Please check the data you informed."
+                } 
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Current user not found in database."
+                }
+              } 
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Database access error. Please try again."
+                }
+              } 
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Authentication failed!"
+                }
+              } 
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns all Tool documents, created by the userId, that have the tag passed as parameter",
+        "operationId": "getUserToolsByTag",
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "tag used to search Tool documents in database",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "Id of the user who added the Tool documents in database",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT",
+            "in": "header",
+            "description": "token for authentication/authorization, passed in the header",
+            "required": true,
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Authorization": {
+                      "type": "string"
+                    }
+                  }
+                }
+              } 
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/tool"
+                  }
+                }  
+              } 
+            }
+          },
+          "470": {
+            "description": "Invalid Parameters",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Invalid parameters. Please check the data you informed."
+                } 
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "No tool found in the specified tag. Please try another tag."
+                } 
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Database access error. Please try again."
+                }
+              } 
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Authentication failed!"
+                }
+              } 
+            }
+          }
+        }
+      }
+    },
+    "/tools/all/{userId}": {
+      "get": {
+        "summary": "Returns all Tool documents, created by the userId in the database, if any",
+        "operationId": "getUserAllTools",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Id of the user who added the Tool documents in database",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT",
+            "in": "header",
+            "description": "token for authentication/authorization, passed in the header",
+            "required": true,
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Authorization": {
+                      "type": "string"
+                    }
+                  }
+                }
+              } 
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/tool"
+                  }
+                }  
+              } 
+            }
+          },
+          "470": {
+            "description": "Invalid Parameters",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Invalid parameters. Please check the data you informed."
+                } 
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "User not found."
+                } 
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Database access error. Please try again."
+                }
+              } 
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Authentication failed!"
+                }
+              } 
+            }
+          }
+        }
+      }
+    },
+    "/tools/{id}": {
+      "delete": {
+        "summary": "Removes the Tool document referenced by the tool id passed as parameter",
+        "operationId": "removeTool",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id used to uniquely reference each Tool document in database",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT",
+            "in": "header",
+            "description": "token for authentication/authorization, passed in the header",
+            "required": true,
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Authorization": {
+                      "type": "string"
+                    }
+                  }
+                }
+              } 
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": { 
+              "application/json": {} 
+            }
+          },
+          "470": {
+            "description": "Invalid Parameters",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Invalid tool id parameter. Please check the data you informed."
+                } 
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Found no tool with the specified id."
+                } 
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Database access error. Please try again."
+                }
+              } 
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": { 
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "message": "Authentication failed!"
+                }
+              } 
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "user": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "user name",
+            "type:": "string"
+          },
+          "email": {
+            "description": "user email",
+            "type:": "string"
+          },
+          "password": {
+            "description": "user password",
+            "type:": "string"
+          }
+        },
+        "required": [ "name", "email", "password" ]
+      },
+      "tool": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "description": "user who is adding this tool",
+            "type:": "string"
+          },
+          "title": {
+            "description": "title for the tool",
+            "type:": "string"
+          },
+          "link": {
+            "description": "url for the tool",
+            "type:": "string"
+          },
+          "description": {
+            "description": "tool short descritpion",
+            "type:": "string"
+          },
+          "tags": {
+            "description": "tags associated by the user with the tool",
+            "type:": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": [ "title", "link", "description" ]
+      }
+    }
+  }
+}

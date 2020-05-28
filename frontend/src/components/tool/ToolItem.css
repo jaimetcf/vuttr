@@ -1,0 +1,48 @@
+.tool-item {
+  margin-bottom: 1rem;
+  width: 100%;
+  min-width: 17.5rem;
+}
+
+.tool-item a {
+  display: inline;
+  align-items: center;
+
+  text-decoration: none;
+  padding: 1rem;
+  color: white;
+  background: #666161;
+}
+
+.tool-item a:hover,
+.tool-item a:active {
+  background: #00a2ff;
+}
+
+.tool-item__content {
+  padding: 0;
+}
+
+.tool-item__image {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1rem;
+}
+
+.tool-item__info h2 {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: normal;
+  color: #ffd900;
+}
+
+.tool-item:hover h2,
+.tool-item:active h2,
+.tool-item:hover h3,
+.tool-item:active h3 {
+  color: #292929;
+}
+
+.tool-item__info h3 {
+  margin: 0;
+}
