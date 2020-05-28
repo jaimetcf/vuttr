@@ -10,15 +10,14 @@ The app uses the MERN stack:
 - frontend: React.js
 - backend: Node.js, Espress, and MongoDB (through mongoose)
 
-The database is hosted on a cloud cluster in Atlas [here](https://www.mongodb.com/)
+The database is hosted on a cloud cluster in the [Atlas Cloud Database](https://www.mongodb.com/cloud/atlas).
 
 ### How to install the app
-The App is deployed on firebase (frontend) and Heroku (backend), and uses the [MongoDB Cloud Database, Atlas](https://www.mongodb.com/cloud/atlas).
+The App is deployed on firebase (frontend) and Heroku (backend), and hence you don't need to install at all. Just type https://vuttr-b86f1.web.app/user on your browser and you're ready to go.
 
-So, you do not need to install it in your machine.
-Nevertheless, if you want to download the code, and run it on your machine, or use it as a starting point for another app, just:
+Nevertheless, if you want to download the code, run it on your machine, or use it as a starting point for another app, just:
 
-1. Clone the full /jaimetcf/face-ai.git repo
+1. Clone the full /jaimetcf/vuttr.git repo
 2. In the backend folder, type:
 ```
    npm install
